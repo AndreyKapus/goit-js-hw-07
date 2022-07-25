@@ -16,7 +16,6 @@ const galleryArray = galleryItems
   .join(" ");
 
 galleryRef.insertAdjacentHTML("beforeend", galleryArray);
-console.log(galleryItems);
 
 galleryRef.addEventListener("click", onCardClick);
 
@@ -25,6 +24,12 @@ function onCardClick(e) {
   if (!e.target.classList.contains("gallery__image")) {
     return;
   }
-  console.log(e.target);
+
+  const image = e.target.dataset.source;
+
+  const instance = basicLightbox.create(`
+    <img src="${image}" width="800" height="600">
+`);
+
+  instance.show();
 }
-// /div><ul><li class="gallery__link"><img src="${preview}" alt="${description}" class ="gallery__image"/></li></ul>
